@@ -1,7 +1,6 @@
 //Using jackson to serialize and deserialize
 import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.*;
 //Imports
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -13,6 +12,9 @@ class Application {
     public static void main(String[] args) {
         // Creating an object mapper instance (jackson)
         ObjectMapper mapper = new ObjectMapper();
+        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+        mapper.configure(SerializationFeature.WRITE_ENUMS_USING_TO_STRING, true);
+        mapper.configure(DeserializationFeature.READ_ENUMS_USING_TO_STRING, true);
         // Checking for exceptions
         try {
             // input stream points to a json file

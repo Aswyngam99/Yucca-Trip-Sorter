@@ -1,15 +1,19 @@
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 public enum BCType {
-    AIRPORT_BUS ("Airport Bus"),
-    FLIGHT("Flight"),
-    TRAIN("Train");
+    AIRPORT_BUS ("Airport Bus") ,
+    FLIGHT ("Flight"),
+    TRAIN ("Train");
+    private final String type;
 
-    public String getPrintableName() {
-        return this.printableName;
+  BCType(String type){
+        this.type = type;
+    }
+    @Override
+    public String toString() {
+        return type;
     }
 
-    private String printableName;
 
-   BCType(String printableName){
-        this.printableName = printableName;
-    }
+
 }

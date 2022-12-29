@@ -1,3 +1,5 @@
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class BCards {
     //Attributes --------------------------------------------
     private String Departure;
@@ -21,13 +23,13 @@ public class BCards {
     public void setBoardingGate(String BoardingGate) { this.BoardingGate = BoardingGate; }
     public String getBaggageDropCounter() { return BaggageDropCounter; }
     public void setBaggageDropCounter(String BaggageDropCounter) { this.BaggageDropCounter = BaggageDropCounter; }
-    //public String getType() { return Type.getPrintableName(); }
-    //public void setType(BCType Type) { this.Type = Type; }
+    public String getType() { return Type.toString(); }
+    public void setType(BCType Type) { this.Type = Type; }
 
     @Override public String toString()
     {
         return "Boarding card [Departure=" + Departure + ", Destination=" + Destination
-                + ", Type=" + Type.getPrintableName() + ", Seat="
+                + ", Type=" + Type.toString() + ", Seat="
                 + Seat + ", TransportName=" + TransportName + ", BoardingGate=" + BoardingGate + ", BaggageDropCounter=" + BaggageDropCounter + "]";
     }
     private String getSeatDescription(){
@@ -45,13 +47,13 @@ public class BCards {
         }
     }
     public String Description(){
-        switch(Type.getPrintableName()){
+        switch(Type.toString()){
             case "Flight":
-                return "Take the " + Type.getPrintableName() + " "+ getTransportName() + " from " + getDeparture() + " to " + getDestination() + ". Gate " +getBoardingGate() + "," + getSeatDescription() + ""+ getBaggageDescription();
+                return "Take the " + Type.toString() + " "+ getTransportName() + " from " + getDeparture() + " to " + getDestination() + ". Gate " +getBoardingGate() + "," + getSeatDescription() + ""+ getBaggageDescription();
             case "Train":
-                return "Take the " + Type.getPrintableName() + " "+ getTransportName() + " from " + getDeparture() + " to " + getDestination() + "." + getSeatDescription();
+                return "Take the " + Type.toString() + " "+ getTransportName() + " from " + getDeparture() + " to " + getDestination() + "." + getSeatDescription();
             case "Airport Bus":
-                return "Take the " + Type.getPrintableName() + " from " + getDeparture() + " to " + getDestination() + "." + getSeatDescription();
+                return "Take the " + Type.toString() + " from " + getDeparture() + " to " + getDestination() + "." + getSeatDescription();
         }
         String errorMessage = "No Transport !";
         return  errorMessage;
